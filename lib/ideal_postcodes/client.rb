@@ -14,8 +14,8 @@ module IdealPostcodes
       AddressesResource.new(self)
     end
 
-    def postcodes
-      PostcodesResource.new(self)
+    def places
+      PlacesResource.new(self)
     end
 
     def emails
