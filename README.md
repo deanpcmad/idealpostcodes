@@ -1,15 +1,13 @@
-# Ideal Postcodes
+# IdealPostcodesRB
 
-**This library is a work in progress**
-
-IdealPostcodes is a Ruby library for the Ideal-Postcodes.co.uk API.
+IdealPostcodesRB is a Ruby library for the Ideal-Postcodes.co.uk API.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'idealpostcodes'
+gem 'idealpostcodesrb'
 ```
 
 ## Usage
