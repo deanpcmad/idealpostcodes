@@ -30,6 +30,10 @@ You can find your API Key from the [Ideal Postcodes account](https://account.ide
 @client.addresses.find query: "10 drowning street"
 #=> #<IdealPostcodes::Collection...
 
+# Lookup address for a postcode
+@client.addresses.lookup postcode: "sw1a 0aa"
+#=> #<IdealPostcodes::Collection...
+
 # Resolve an address
 # Kind should be GBR or USA
 # Address would be the ID of the Address in Ideal Postcodes

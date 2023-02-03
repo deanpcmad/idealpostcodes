@@ -14,7 +14,6 @@ module IdealPostcodes
   autoload :AddressesResource, "ideal_postcodes/resources/addresses"
   autoload :EmailsResource, "ideal_postcodes/resources/emails"
   autoload :PhonesResource, "ideal_postcodes/resources/phones"
-  autoload :PostcodesResource, "ideal_postcodes/resources/postcodes"
 
   autoload :Address, "ideal_postcodes/objects/address"
   autoload :Email, "ideal_postcodes/objects/email"
