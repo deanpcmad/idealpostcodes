@@ -5,9 +5,15 @@ module IdealPostcodes
     def self.from_response(response, type:)
       body = response.body
 
+      if body["result"] and body["result"].include? "hits"
+        data = body["result"]["hits"]
+      else
+        data = body["result"]
+      end
+
       new(
-        data: body["result"]["hits"].map { |attrs| type.new(attrs) },
-        total: body["result"]["hits"].count
+        data: data.map { |attrs| type.new(attrs) },
+        total: data.count
       )
     end
 
