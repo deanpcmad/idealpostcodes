@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    idealpostcodes (0.1.0)
+    idealpostcodesrb (0.1.0)
       faraday (~> 2.0)
 
 GEM
@@ -20,7 +20,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv
-  idealpostcodes!
+  idealpostcodesrb!
   rake (~> 13.0)
 
 BUNDLED WITH
