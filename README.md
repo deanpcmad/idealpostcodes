@@ -38,6 +38,12 @@ You can find your API Key from the [Ideal Postcodes account](https://account.ide
 # Kind should be GBR or USA
 # Address would be the ID of the Address in Ideal Postcodes
 @client.addresses.resolve kind: "gbr", address: "paf_22690298"
+
+# Retrieves an address as identified by its Unique Delivery Point Reference Number (UDPRN).
+@client.addresses.udprn query: "abc123"
+
+# Retrieves an address as identified by its UMPRN (Multiple Residence Unique ID.
+@client.addresses.umprn query: "abc123"
 ```
 
 ### Email Validation
