@@ -46,6 +46,19 @@ You can find your API Key from the [Ideal Postcodes account](https://account.ide
 @client.addresses.umprn query: "abc123"
 ```
 
+### Places
+
+```ruby
+# Query places across countries
+# Docs: https://docs.ideal-postcodes.co.uk/api#tag/Place-Search/operation/FindPlace
+@client.places.find query: "London"
+#=> #<IdealPostcodes::Collection
+
+# Resolve a Place
+@client.places.resolve place: "geonames_2643743"
+#=> #<IdealPostcodes::Place id="geonames_2643743"...
+```
+
 ### Email Validation
 
 Queries and validates a given email address.
