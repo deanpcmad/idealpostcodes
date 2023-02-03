@@ -14,77 +14,49 @@ gem 'idealpostcodes'
 
 ## Usage
 
-### Generate an Access Token
+### Set your API Key
 
-Firstly you'll need to generate an Access Token. Set the Client ID and Secret
-An Access Token will be an OAuth2 token generated after authentication. 
-
+You can find your API Key from the [Ideal Postcodes account](https://account.ideal-postcodes.co.uk/tokens) page, then set it like so:
 
 ```ruby
-@authentication = PayPal::Authentication.new(
-  client_id: "",
-  client_secret: "",
-  sandbox: true
-)
-
-@authentication.get_token
-# =>  #<PayPal::AccessToken access_token="abc123", expires_in=123 
+@client = IdealPostcodes::Client.new(api_key: "abc123")
 ```
 
-Then once you have an access token, set it like so:
+### Address
 
 ```ruby
-@client = PayPal::Client.new(access_token: "abc123", sandbox: true)
+# Find an address
+# Docs: https://docs.ideal-postcodes.co.uk/api#tag/Address-Search/operation/AddressAutocomplete
+@client.addresses.find query: "10 drowning street"
+#=> #<IdealPostcodes::Collection...
+
+# Resolve an address
+# Kind should be GBR or USA
+# Address would be the ID of the Address in Ideal Postcodes
+@client.addresses.resolve kind: "gbr", address: "paf_22690298"
 ```
 
-### Products
+### Email Validation
+
+Queries and validates a given email address.
 
 ```ruby
-# Retrieve a list of products
-@client.products.list
-
-# Retrieve a product by its ID
-@client.products.retrieve id: "123"
-
-# Create a product
-# Type should be physical, digital or service
-# Docs: https://developer.paypal.com/docs/api/catalog-products/v1/#products_create
-@client.products.create name: "My Product", type: ""
+@client.emails.validate email: "test-email@example.com"
+#=> #<IdealPostcodes::Email result="deliverable"...
 ```
 
-### Orders
+### Phone Validation
+
+Queries and validates a given phone number. Number should include the country code.
 
 ```ruby
-# Retrieves an Order
-@client.orders.retrieve id: "abc123"
-
-# Creates an Order
-# Intent should be either capture or authorize
-# Items is an array of purchase units
-# Docs: https://developer.paypal.com/docs/api/orders/v2/#orders_create
-@client.orders.create intent: "capture", items: []
-
-# As above but creates an order for the total of value given
-@client.orders.create_payment intent: "capture", description: "A Payment",
-  currency: "GBP", value: "25.00"
-
-# As above but creates an order for a single item
-@client.orders.create_single intent: "capture", title: "Item Title",
-  description: "Item Description", currency: "GBP", value: "25.00"
-
-# Authorizes payment for an order. The buyer must first approve the order.
-@client.orders.authorize id: "123abc"
-
-# Captures payment for an order. The buyer must first approve the order.
-@client.orders.capture id: "123abc"
-
-# Confirms a payment source for an order
-@client.orders.confirm id: "123abc", source: {}
+@client.phones.validate number: "447123123123"
+#=> #<IdealPostcodes::Phone valid=true...
 ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/deanpcmad/paypalrb.
+Bug reports and pull requests are welcome on GitHub at https://github.com/deanpcmad/idealpostcodes.
 
 ## License
 

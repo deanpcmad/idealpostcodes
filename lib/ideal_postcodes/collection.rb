@@ -1,24 +1,19 @@
 module IdealPostcodes
   class Collection
-    attr_reader :data, :total, :next_page_token, :prev_page_token
+    attr_reader :data, :total
 
-    def self.from_response(response, kind:, type:)
+    def self.from_response(response, type:)
       body = response.body
 
       new(
-        data: body[kind].map { |attrs| type.new(attrs) },
-        total: body["pageInfo"],
-        next_page_token: body["nextPageToken"],
-        prev_page_token: body["prevPageToken"],
-        # cursor: body.dig("pagination", "cursor")
+        data: body["result"]["hits"].map { |attrs| type.new(attrs) },
+        total: body["result"]["hits"].count
       )
     end
 
-    def initialize(data:, total:, next_page_token:, prev_page_token:)
+    def initialize(data:, total:)
       @data = data
       @total = total
-      @next_page_token = next_page_token
-      @prev_page_token = prev_page_token
     end
   end
 end
